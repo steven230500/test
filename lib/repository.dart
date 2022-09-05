@@ -22,7 +22,6 @@ class Repository {
     for (final movie in data) {
       movies.add(Movie.fromJson(movie));
     }
-    log('eche $movies');
     return movies;
   }
 
@@ -31,8 +30,11 @@ class Repository {
         'https://api.themoviedb.org/3/movie/$movieId?api_key=34738023d27013e6d1b995443764da44&language=es&page=1';
 
     final response = await dio.get(url);
-    final data = response.data['results'] as dynamic;
+    final data = response.data as Map<String, dynamic>;
 
-    return Movie.fromJson(data);
+    log('pa cuando $data');
+    final Movie movie = Movie.fromJson(data);
+
+    return movie;
   }
 }

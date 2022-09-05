@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_test/models/movie.dart';
+import 'package:mobile_test/pages/detail/bloc/bloc.dart';
 import 'package:mobile_test/pages/home/bloc/bloc.dart';
 import 'package:mobile_test/theme/colors.dart';
 
@@ -27,11 +28,6 @@ class HomePage extends StatelessWidget {
             ),
             BlocBuilder<Test1Bloc, Test1State>(
               builder: (context, state) {
-                if (state is LoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
                 return SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -57,11 +53,6 @@ class HomePage extends StatelessWidget {
             ),
             BlocBuilder<Test1Bloc, Test1State>(
               builder: (context, state) {
-                if (state is LoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
                 return SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -108,11 +99,11 @@ class HeaderWidget extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(fontSize: 16, color: AppColors.primary),
+            style: const TextStyle(fontSize: 16, color: AppColors.primary),
           ),
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, '/test'),
-            child: Text(
+            child: const Text(
               'Ver todos',
             ),
           ),
@@ -128,14 +119,20 @@ class ContentMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image.network(
-          'http://image.tmdb.org/t/p/w500/${movie.posterPath}',
+    return GestureDetector(
+      onTap: () {
+        context.read<Test3Bloc>().getMovie(movieId: movie.id ?? 0);
+        Navigator.pushNamed(context, '/detail');
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 10,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.network(
+            'http://image.tmdb.org/t/p/w500/${movie.posterPath}',
+          ),
         ),
       ),
     );

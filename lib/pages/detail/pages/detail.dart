@@ -46,14 +46,14 @@ class Page extends StatelessWidget {
                           vertical: 10, horizontal: 25),
                       child: InkWell(
                         onTap: () => Navigator.pop(context),
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
                           size: 30,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     Padding(
@@ -78,10 +78,26 @@ class Page extends StatelessWidget {
                                 width: 180,
                               ),
                             ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(right: 50, top: 70),
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: Colors.red,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.red.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 8)
+                                ]),
+                            child: Icon(Icons.play_arrow,
+                                color: Colors.white, size: 60),
                           )
                         ],
                       ),
-                    )
+                    ),
                   ],
                 )),
               )

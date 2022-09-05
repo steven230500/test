@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_test/pages/detail/bloc/bloc.dart';
 import 'package:mobile_test/pages/detail/pages/detail.dart';
 import 'package:mobile_test/pages/home/bloc/bloc.dart';
 import 'package:mobile_test/pages/home/page.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
     };
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => Test3Bloc(Repository()),
+        ),
         BlocProvider(
           create: (context) => Test2Bloc(Repository())..add(const LoadEvent()),
         ),
