@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_test/pages/detail/bloc/bloc.dart';
+import 'package:mobile_test/theme/colors.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -40,15 +41,15 @@ class Page extends StatelessWidget {
               SingleChildScrollView(
                 child: SafeArea(
                     child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 25),
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: InkWell(
                         onTap: () => Navigator.pop(context),
                         child: const Icon(
                           Icons.arrow_back,
-                          color: Colors.white,
+                          color: AppColors.primary,
                           size: 30,
                         ),
                       ),
@@ -58,43 +59,60 @@ class Page extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(boxShadow: [
-                              BoxShadow(
-                                  color: Colors.red.withOpacity(0.5),
-                                  spreadRadius: 1,
-                                  blurRadius: 8),
-                            ], borderRadius: BorderRadius.circular(20)),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                state.model.movie != null
-                                    ? 'http://image.tmdb.org/t/p/w500/${state.model.movie!.posterPath}'
-                                    : 'https://uxwing.com/image-not-found-icon/',
-                                height: 250,
-                                width: 180,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(right: 50, top: 70),
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                color: Colors.red,
-                                boxShadow: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(boxShadow: [
                                   BoxShadow(
                                       color: Colors.red.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 8)
-                                ]),
-                            child: const Icon(Icons.play_arrow,
-                                color: Colors.white, size: 60),
-                          )
+                                      spreadRadius: 1,
+                                      blurRadius: 8),
+                                ], borderRadius: BorderRadius.circular(20)),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.network(
+                                    state.model.movie != null
+                                        ? 'http://image.tmdb.org/t/p/w500/${state.model.movie!.posterPath}'
+                                        : 'https://uxwing.com/image-not-found-icon/',
+                                    height: 250,
+                                    width: 180,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(right: 50, top: 70),
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: AppColors.primary,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.red.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 8)
+                                    ]),
+                                child: const Icon(Icons.play_arrow,
+                                    color: Colors.white, size: 60),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            state.model.movie?.title ?? '',
+                            style: const TextStyle(
+                                fontSize: 20, color: AppColors.secondary),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(state.model.movie?.overview ?? ''),
                         ],
                       ),
                     ),
