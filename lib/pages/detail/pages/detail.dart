@@ -57,7 +57,7 @@ class Page extends StatelessWidget {
                       height: 60,
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -92,7 +92,7 @@ class Page extends StatelessWidget {
                                       spreadRadius: 2,
                                       blurRadius: 8)
                                 ]),
-                            child: Icon(Icons.play_arrow,
+                            child: const Icon(Icons.play_arrow,
                                 color: Colors.white, size: 60),
                           )
                         ],

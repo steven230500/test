@@ -121,7 +121,7 @@ class ContentMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<Test3Bloc>().getMovie(movieId: movie.id ?? 0);
+        context.read<Test3Bloc>().getMovie(movie: movie);
         Navigator.pushNamed(context, '/detail');
       },
       child: Padding(

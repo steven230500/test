@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => Test3Bloc(Repository()),
+          create: (context) => Test3Bloc(),
         ),
         BlocProvider(
           create: (context) => Test2Bloc(Repository())..add(const LoadEvent()),
